@@ -98,6 +98,7 @@ def hangman(secret_word):
     
     guesses = 6
     letters_guessed = []
+    secret = list(set(secret_word))
     
     while guesses > 0 and is_word_guessed(secret_word, letters_guessed) == False:
         
