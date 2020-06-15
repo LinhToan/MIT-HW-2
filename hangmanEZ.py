@@ -102,20 +102,22 @@ def hangman(secret_word):
     while guesses > 0 and is_word_guessed(secret_word, letters_guessed) == False:
         
         user_guess = input('Guess a letter: ')
-        letters_guessed.append(user_guess)
+        letters_guessed.append(user_guess) #keeps track of letters guessed by user
         
-        if user_guess in secret_word:
+        if user_guess in secret_word: #if the word guessed is in secret word
+            secret.remove(user_guess) #removes correctly guessed letter from the list
             print('That is correct. You have {} guesses left'.format(str(guesses)))
         else:
             guesses -= 1
             print('That is incorrect. You have {} guesses left'.format(str(guesses)))
         
-        if guesses > 0 and is_word_guessed(secret_word, letters_guessed) == False:
-            print('So far the word looks like: ', get_guessed_word(secret_word, letters_guessed))
-            print('Available letters: ', get_available_letters(letters_guessed))
-            print()
-        elif guesses > 0 and is_word_guessed(secret_word, letters_guessed) == True:
-            print('Correct! The secret word is: ', secret_word)
+        if guesses > 0: #if there are still guesses left
+            if secret != []: #secret != [] means there are still letters to guess
+                print('So far the word looks like: ', get_guessed_word(secret_word, letters_guessed))
+                print('Available letters: ', get_available_letters(letters_guessed))
+                print()
+            else: #secret == [] means all letters in secret_word have been guessed
+                print('Correct! The secret word is: ', secret_word)
         else:
             print('The secret word is: ', secret_word)
         
