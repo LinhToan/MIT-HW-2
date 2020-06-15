@@ -110,7 +110,12 @@ def hangman(secret_word):
             guesses -= 1
             print('That is incorrect. You have {} guesses left'.format(str(guesses)))
         
-        print('So far the word looks like: ', get_guessed_word(secret_word, letters_guessed))
-        print('Available letters: ', get_available_letters(letters_guessed))
-        print()
+        if guesses > 0 and is_word_guessed(secret_word, letters_guessed) == False:
+            print('So far the word looks like: ', get_guessed_word(secret_word, letters_guessed))
+            print('Available letters: ', get_available_letters(letters_guessed))
+            print()
+        elif guesses > 0 and is_word_guessed(secret_word, letters_guessed) == True:
+            print('Correct! The secret word is: ', secret_word)
+        else:
+            print('The secret word is: ', secret_word)
         
